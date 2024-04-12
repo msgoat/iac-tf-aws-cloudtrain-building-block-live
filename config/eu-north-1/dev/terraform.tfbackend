@@ -1,0 +1,3 @@
+region = "eu-north-1"
+bucket = "s3-eu-north-1-iactrain-dev-tfbblox2024"
+dynamodb_table = "dyn-eu-north-1-iactrain-dev-tfbblox2024"
