@@ -44,4 +44,5 @@ module "k8s_foundation" {
   kubernetes_version               = var.kubernetes_version
   node_group_templates             = var.node_group_templates
   public_dns_zone_id               = data.terraform_remote_state.stage_shared.outputs.public_dns_zone_id
+  host_names                       = var.host_names
 }

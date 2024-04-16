@@ -13,6 +13,7 @@ tfstate_region = "eu-north-1"
 tfstate_bucket = "s3-eu-north-1-iactrain-dev-tfbblox2024"
 tfstate_dynamodb_table = "dyn-eu-north-1-iactrain-dev-tfbblox2024"
 public_dns_zone_name = "tfbblox2024-dev.cloudtrain.aws.msgoat.eu"
+host_names = ["tfbblox2024-dev.cloudtrain.aws.msgoat.eu"]
 parent_dns_zone_id = "Z0656421399R1M1TYM2HZ"
 network_cidr="10.17.0.0/16"
 zones_to_span=["eu-north-1a", "eu-north-1b"]
@@ -34,3 +35,9 @@ node_group_templates=[
 ]
 admin_principal_ids = [ "cloudtrain-power-user" ]
 letsencrypt_account_name = "msg.O.GBA.CloudTrain@msg.group"
+# Controls if OpenTelemetry support should be enabled
+opentelemetry_enabled = true
+# Host name of the OpenTelemetry collector endpoint; required if `opentelemetry_enabled` is true
+opentelemetry_collector_host = "tracing-jaeger-collector.tracing"
+# Port number of the OpenTelemetry collector endpoint; required if `opentelemetry_enabled` is true
+opentelemetry_collector_port = 4317

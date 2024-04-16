@@ -57,3 +57,23 @@ variable "kubernetes_cluster_architecture" {
   }
 }
 
+variable "host_names" {
+  description = "Host names of all hosts whose traffic should be routed to this solution"
+  type        = list(string)
+  default     = []
+}
+
+variable "opentelemetry_enabled" {
+  description = "Controls if OpenTelemetry support should be enabled"
+  type        = bool
+}
+
+variable "opentelemetry_collector_host" {
+  description = "Host name of the OpenTelemetry collector endpoint; required if `opentelemetry_enabled` is true"
+  type        = string
+}
+
+variable "opentelemetry_collector_port" {
+  description = "Port number of the OpenTelemetry collector endpoint; required if `opentelemetry_enabled` is true"
+  type        = number
+}

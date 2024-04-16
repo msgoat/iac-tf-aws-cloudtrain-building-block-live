@@ -97,3 +97,9 @@ variable "tfstate_dynamodb_table" {
   description = "Name of the DynamoDB table managing the remote Terraform state."
   type        = string
 }
+
+variable "host_names" {
+  description = "Host names of all hosts whose traffic should be routed to this solution"
+  type        = list(string)
+  default     = []
+}
