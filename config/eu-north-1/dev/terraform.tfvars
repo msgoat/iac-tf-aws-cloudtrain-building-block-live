@@ -41,3 +41,16 @@ opentelemetry_enabled = true
 opentelemetry_collector_host = "tracing-jaeger-collector.tracing"
 # Port number of the OpenTelemetry collector endpoint; required if `opentelemetry_enabled` is true
 opentelemetry_collector_port = 4317
+kubernetes_namespace_templates = [{ name = "cloudtrain" }]
+postgresql_templates = [
+  {
+    instance_name = "tfbblox2024"
+    database_name = "iactrain"
+    instance_type = "db.t4g.micro"
+    min_storage_size = 20
+    max_storage_size = 40
+    storage_type = "gp3"
+    version = "16.1"
+    final_snapshot_enabled = false
+  }
+]

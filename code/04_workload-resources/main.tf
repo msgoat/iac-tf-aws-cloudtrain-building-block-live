@@ -19,7 +19,7 @@ terraform {
   }
   backend "s3" {
     # Please provide all other information via the -backend-config command line argument
-    key = "tfbblox2024/dev/platform-bootstrap.tfstate"
+    key = "tfbblox2024/dev/workload-resources.tfstate"
   }
 }
 
@@ -71,22 +71,14 @@ provider "helm" {
   }
 }
 
-module "k8s_bootstrap" {
-  source                          = "../../../iac-tf-aws-cloudtrain-building-block-modules//modules/container/kubernetes/bootstrap"
+module postgresql {
+  source                          = "../../../iac-tf-aws-cloudtrain-building-block-modules//modules/database/postgresql"
   region_name                     = var.region_name
   solution_name                   = var.solution_name
   solution_stage                  = var.solution_stage
   solution_fqn                    = var.solution_fqn
   common_tags                     = var.common_tags
-  k8s_cluster_id                  = data.terraform_remote_state.platform_foundation.outputs.k8s_cluster_id
-  letsencrypt_account_name        = var.letsencrypt_account_name
-  admin_principal_ids             = var.admin_principal_ids
-  public_dns_zone_id              = data.terraform_remote_state.stage_shared.outputs.public_dns_zone_id
-  kubernetes_cluster_architecture = var.kubernetes_cluster_architecture
-  host_names                      = var.host_names
-  loadbalancer_id                 = data.terraform_remote_state.platform_foundation.outputs.loadbalancer_id
-  opentelemetry_enabled           = var.opentelemetry_enabled
-  opentelemetry_collector_host    = var.opentelemetry_collector_host
-  opentelemetry_collector_port    = var.opentelemetry_collector_port
-  kubernetes_namespace_templates  = var.kubernetes_namespace_templates
+  postgresql_templates            = var.postgresql_templates
+  vpc_id = data.terraform_remote_state.platform_foundation.outputs.network_id
+  k8s_cluster_id = data.terraform_remote_state.platform_foundation.outputs.k8s_cluster_id
 }
